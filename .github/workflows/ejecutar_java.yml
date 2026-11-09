@@ -1,0 +1,26 @@
+name: Ejecutar programa Java
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ejecutar-java:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Compilar programa
+        run: javac src/Hola.java
+
+      - name: Ejecutar programa
+        run: java -cp src Hola
